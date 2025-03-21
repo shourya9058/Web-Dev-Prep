@@ -1,0 +1,47 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+.main{
+   height:100vh;
+   background-color: pink;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+}
+
+.content{
+    height: 70%;
+    width: 80%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px); /* Adds the blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 2rem;
+
+}
+
+.buttons{
+    display: flex;
+}
+
+.yes {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.no {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}

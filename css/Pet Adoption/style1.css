@@ -1,0 +1,30 @@
+h2{
+    color: rgb(177, 28, 28);
+}
+
+h1 span{
+    color: rgb(161, 96, 12);
+}
+#pets{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.card img{
+    height: 300px;
+    width: 477px;
+    border-radius: 20px;
+    padding: 10px;
+}
+.card p{
+    padding: 10px;
+}
+.card{
+    height: 600px;
+    width: 500px;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+h3{
+    padding-left: 20px;
+}

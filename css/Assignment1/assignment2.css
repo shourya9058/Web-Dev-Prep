@@ -1,0 +1,27 @@
+.box{
+    height: 300px;
+    width: 150px;
+    border: 5px solid black;
+    background-color: green;
+    margin-right: 1em;
+    margin-bottom:40px ;
+    margin-bottom: 2em;
+    padding: 1em;
+}
+#di{
+    height: 100px;
+    width: 100px;
+    background-color: pink;
+    border: 2px solid black;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.Languages li{
+    display: inline-block;
+    margin: 10px;
+}  
+
+/* Note: Using 'display: inline-block' on <li> elements removes their default bullets 
+because it overrides the 'list-item' display. To restore the bullets, use 'list-style: disc;' 
+or your preferred style. */

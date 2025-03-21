@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+#dice {
+    height: 150px;
+    width: 150px;
+    border: 4px solid black;
+    border-radius: 20px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    position: relative;
+}
+
+.circle {
+    height: 30px;
+    width: 30px;
+    background-color: black;
+    border-radius: 50%;
+    opacity: 0; /* Initially hidden */
+}
+
+/* Dice face positions */
+.show-1 .dot-5,
+.show-2 .dot-1, .show-2 .dot-9,
+.show-3 .dot-1, .show-3 .dot-5, .show-3 .dot-9,
+.show-4 .dot-1, .show-4 .dot-3, .show-4 .dot-7, .show-4 .dot-9,
+.show-5 .dot-1, .show-5 .dot-3, .show-5 .dot-5, .show-5 .dot-7, .show-5 .dot-9,
+.show-6 .dot-1, .show-6 .dot-3, .show-6 .dot-4, .show-6 .dot-6, .show-6 .dot-7, .show-6 .dot-9 {
+    opacity: 1;
+}

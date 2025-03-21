@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(221, 214, 214);
+}
+
+.main{
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#btn{
+    padding: 4px;
+    height: 30px;
+    width: 120px;
+}
+
+#clrDiv{
+    text-align: center;
+    border: 2px solid white;
+    height: 300px;
+    width: 600px;
+}
+

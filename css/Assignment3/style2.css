@@ -1,0 +1,20 @@
+#nav{
+    height: 50px;
+    width: 900px;
+    background-color: pink;
+    border: 2px solid green;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.section{
+    height: 50px;
+    width: 80px;
+    background-color: pink;
+    align-items: center;
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    margin-left: 10px;
+    line-height: 50px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <h1>Search via Google!</h1>
+    <form action="/server"></form>
+    <!-- <form action="https://www.google.com/search"> -->
+      <input type="text" name="q" placeholder="Search here..." />
+      <button type="submit">Submit</button>
+      <h2>Enter Gender</h2>
+      <input type="radio" name="gender" id="male" value="male" />
+      <label for="male">Male</label>
+      <input type="radio" name="gender" id="female" value="female" />
+      <label for="male">Female</label>
+      <input type="radio" name="gender" id="none" value="none" />
+      <label for="none">Prefer not to say</label>
+    
+
+    <div>
+      <select name="Profession" id="Profession">
+        <option value="Stu" selected>Student</option>
+        <option value="Dev">Developer</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="rating">Tell us how much you love us</label>
+      <input type="range" min="0" max="100" id="rating" name="rating" step="10" value="40" />
+    </div>
+
+    <button>Submit</button>
+</form>
+  </head>
+  <body></body>
+</html>

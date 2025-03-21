@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>API Practice:</h1>
+    <p>Free API testing Tool: <b>HOPPSCOTCH.io</b></p>
+    <h2>AJAX (Asynchronous JavaScript and XML):</h2>
+    <p>
+      AJAX ek technique hai jo web pages ko bina refresh kiye data fetch karne
+      ya bhejne ki suvidha deti hai. Yeh asynchronous hota hai, matlab ek
+      request bhejne ke baad page ka baaki ka content block nahi hota.
+    </p>
+    <h2>Http Verbs:</h2>
+    <p>
+        <ul>
+            <li>GET: Jab humein sirf server se data fetch karna ho, tab GET request use karte hain.</li>
+            <li>POST: Jab humein server ko koi naya data bhejna ho (e.g., form submission, user registration), tab POST request use karte hain.</li>
+            <li>DELETE: Jab humein server se koi specific data delete karna ho, tab DELETE request use karte hain.</li>
+        </ul>
+    </p>
+    <h2>Status Codes: </h2><p>Hrr request k baad data k saath ek code bhi return hota which have a meaning to it.</p>
+    <h2>Example:</h2>
+    <p>
+        <ul>
+            <li><b>200: </b>Everything is OK</li>
+            <li><b>404: </b>Not found (API/page doesn't exist)</li>
+            <li><b>400: </b>BAd Request</li>
+            <li><b>500: </b>Internal Server Error</li>
+        </ul>
+        <p>Any Many more (Read from internet if needed).</p>
+    </p>
+
+    <h2>Axios:</h2>
+    <p>Yeh ek library h jo API calls krne k liye hi use hota h just like fetch but isme hume data ko parse nhi krna padhta instead isme hume data already readable format mein milta h</p>
+    <p>Isko use krne k liye download bhi kr skte h but hum abhi sirf iski website se iska tag copy krke apni html file mein script tag k upr paste krke isse use krenge.</p>
+    <p>Isme bhi POST & GET dono options use kr skte h but abhi hum sirf GET use krenge.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <hr>
+    <h1 id="Cat">Get Random Cat Facts</h1>
+   <div class="pro">
+    <p id="text"></p>
+   </div>
+   <button id="btn">Get Quote</button>
+   <hr>
+    <hr>
+    <h1 id="Dog">Get Random Dog Images</h1>
+   <div class="dis">
+    <img id="img">
+   </div>
+   <button id="btn2">Get Image</button>
+   <hr>
+
+   <h1>Get universities of a Country</h1>
+   <input type="text" placeholder="Enter Country here...">
+   <button id="country">Search</button>
+   <ul id="result"></ul>
+
+   <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

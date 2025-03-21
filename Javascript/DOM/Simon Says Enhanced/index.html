@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuroSimon - Memory Challenge</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="particle-container"></div>
+
+    <div class="game-container">
+      <div class="header">
+        <h1 class="game-title animate__animated animate__fadeInDown">
+          <span class="gradient-text">NEURO</span>SIMON
+        </h1>
+        <div class="game-stats">
+          <div class="stat-box">
+            <div class="stat-label">LEVEL</div>
+            <div class="stat-value" id="level">00</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">RECORD</div>
+            <div class="stat-value" id="high-score">00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-grid">
+        <div class="game-button red" data-color="red"></div>
+        <div class="game-button yellow" data-color="yellow"></div>
+        <div class="game-button green" data-color="green"></div>
+        <div class="game-button blue" data-color="blue"></div>
+      </div>
+
+      <div class="control-panel">
+        <button class="action-btn start-btn">
+          <span class="btn-gradient"></span>
+          <span class="btn-text">START</span>
+        </button>
+        <div class="difficulty-selector">
+          <div class="difficulty-btn active" data-difficulty="easy">CASUAL</div>
+          <div class="difficulty-btn" data-difficulty="medium">PRO</div>
+          <div class="difficulty-btn" data-difficulty="hard">EXPERT</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tutorial-overlay">
+      <div class="tutorial-card">
+        <h2>COGNITIVE CHALLENGE</h2>
+        <div class="tutorial-steps">
+          <div class="step">
+            <div class="step-icon">①</div>
+            <div class="step-text">Memorize the sequence pattern</div>
+          </div>
+          <div class="step">
+            <div class="step-icon">②</div>
+            <div class="step-text">Repeat the pattern accurately</div>
+          </div>
+          <div class="step">
+            <div class="step-icon">③</div>
+            <div class="step-text">Advance through neural levels</div>
+          </div>
+        </div>
+        <button class="action-btn begin-btn">
+          <span class="btn-gradient"></span>
+          <span class="btn-text">BEGIN TRAINING</span>
+        </button>
+      </div>
+    </div>
+
+    <audio
+      id="hoverSound"
+      src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3"
+    ></audio>
+    <audio
+      id="clickSound"
+      src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3"
+    ></audio>
+    <audio
+      id="successSound"
+      src="https://assets.mixkit.co/sfx/preview/mixkit-game-level-completed-2059.mp3"
+    ></audio>
+    <audio
+      id="failSound"
+      src="https://assets.mixkit.co/sfx/preview/mixkit-retro-arcade-lose-2027.mp3"
+    ></audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
