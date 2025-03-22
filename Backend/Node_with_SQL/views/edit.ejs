@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit form</title>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>You are about to edit your Credentials of user <%= user.id%></h1>
+        <h2>Current Username: <%= user.username%></h2>
+        <h2>Current Email: <%=user.email %></h2>
+        <form method="post" action="/user/<%= user.id%>?_method=PATCH">
+            <h3>Enter New Username:</h3>
+            <textarea name="username" id="username"><%= user.username%></textarea> <br> 
+            <h3>Enter New Email:</h3>
+            <textarea name="email" id="email"><%=user.email %></textarea> <br>
+            <input type="password" name="password" id="" placeholder="enter your password">
+            <button>submit changes</button>
+        </form>
+    </body>
+    </html>
+</body>
+</html>

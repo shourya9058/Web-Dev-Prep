@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+            border: 2px solid black; /* Outer Border */
+        }
+        th, td {
+            padding: 10px;
+            border: 2px solid black; /* Cell Borders */
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Users Data</h1>
+    
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Edit</th>
+        </tr>
+        <% for(user of data) { %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td><form method="GET" action="/user/<%=user.id%>/edit">
+                    <button>Edit</button>
+                </form></td>
+            </tr>
+        <% } %>
+    </table>
+
+    <h2>Current User Count: <%= data.length %></h2>
+</body>
+</html>

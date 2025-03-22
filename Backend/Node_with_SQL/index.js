@@ -8,9 +8,12 @@ const mysql = require("mysql2"); //requiring mysql2
 const express = require("express");
 const app = express();
 const path = require("path");
+const methodOverride = require("method-override");
 
+app.use(methodOverride("_method"));
+app.use(express.urlencoded({extended: true}));
 app.set("view engine","ejs");
-app.use("views",Path2D.join(__dirname,"/views"));
+app.set("views",path.join(__dirname,"/views"));
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -86,27 +89,16 @@ let getRandomUser = ()  => {
   };
 
 
-let q = "INSERT INTO user(id,username,email,password) VALUES ?"; // ? -> placeholder
-let data = [];
+// let q = "INSERT INTO user(id,username,email,password) VALUES ?"; // ? -> placeholder
+// let data = [];
 
-for(let i = 0;i<100;i++){
-    data.push(getRandomUser());
-    console.log(getRandomUser());
-}
+// for(let i = 0;i<100;i++){
+//     data.push(getRandomUser());
+//     console.log(getRandomUser()); //bhut data inert already krliya h toh isko abhi hta skte h
+// }
 
-  try{ //Method 2 of using sql with node by using SQL2 package**
-    connection.query(q, [data], (err,result)=>{ //iss function k andar jo query run krni hoti h wo likhte h
-        if(err) throw err;  //agr error aaya toh throw krwa denge
-        console.log(result); //result->array
-        console.log(result.length);
-        console.log(result[0]);
-        console.log(result[1]);
-      })
-  } catch(err){
-    console.log(`Error: ${err}`);
-  }
-  
-  connection.end();  //query run hone k baad bhi connection chlta rehta h isiliye yeh line add krte h
+
+  // connection.end();  //query run hone k baad bhi connection chlta rehta h isiliye yeh line add krte h
 
 //AB Routing krenge(alg alg pages aur routes ko use krenge just like quora wale project mein kiya tha)
 
@@ -115,3 +107,107 @@ for(let i = 0;i<100;i++){
 // PATCH/user/:id - username edit
 // POST/user - new user
 // DELETE/user/:id - user delete
+
+
+//Home Page
+app.get("/",(req,res)=>{
+  let q = "SELECT COUNT(*) FROM user";
+  try{ //Method 2 of using sql with node by using SQL2 package**
+      connection.query(q, (err,result)=>{ //iss function k andar jo query run krni hoti h wo likhte h
+          if(err) throw err;  //agr error aaya toh throw krwa denge
+          let count = result[0]["COUNT(*)"];
+          res.render("home.ejs",{count}); //object bnake bhejte h cause render sirf object accept krta h for sending
+        })
+    } catch(err){
+      console.log(`Error: ${err}`);
+      res.send("Some error in database");
+    }
+    
+})
+
+//Show User Route
+app.get("/user",(req,res)=>{
+  let q = "SELECT * FROM user";
+  try{ 
+      connection.query(q, (err,result)=>{ //iss function k andar jo query run krni hoti h wo likhte h
+          if(err) throw err;  //agr error aaya toh throw krwa denge
+          let data = result;
+          res.render("user.ejs",{data});
+        })
+    } catch(err){
+      console.log(`Error: ${err}`);
+      res.send("Some error in database");
+    }
+})
+
+
+//Edit route
+
+app.get("/user/:id/edit",(req,res)=>{
+  let {id} =  req.params;
+  let q = `SELECT * FROM user WHERE id = '${id}'`;
+  try{ 
+    connection.query(q, (err,result)=>{ //iss function k andar jo query run krni hoti h wo likhte h
+        if(err) throw err;  
+        let user = result[0];  
+        res.render("edit.ejs",{user});
+      })
+  } catch(err){
+    console.log(`Error: ${err}`);
+    res.send("Some error in database");
+  }
+})
+
+//Update Route:
+//search the user bassed on it's id
+//check if the password is correct
+//update the data
+
+app.patch("/user/:id",(req,res)=>{
+  let {id} =  req.params;
+  let {password: formPass, username: newUsername, email: newEmail} = req.body;
+  let q = `SELECT * FROM user WHERE id = '${id}'`;
+  try{ 
+    connection.query(q, (err,result)=>{ //iss function k andar jo query run krni hoti h wo likhte h
+        if(err) throw err;  
+        let user = result[0];  
+        if(formPass!=user.password){
+          res.send("Incorrect Password");
+        }else{
+          let q2 = `UPDATE user SET username='${newUsername}', email='${newEmail}' WHERE id='${id}'`;
+          connection.query(q2, (err,result)=>{
+            if(err) throw err;
+            res.redirect('/user');
+          });
+        }
+      })
+  } catch(err){
+    console.log(`Error: ${err}`);
+    res.send("Some error in database");
+  }
+})
+
+
+
+
+app.listen("8080",()=>{
+  console.log("server is listening to port 8080");
+})
+
+
+
+// try{ //Method 2 of using sql with node by using SQL2 package**
+  //   connection.query(q, [data], (err,result)=>{ //iss function k andar jo query run krni hoti h wo likhte h
+  //       if(err) throw err;  //agr error aaya toh throw krwa denge
+  //       console.log(result); //result->array
+  //       console.log(result.length);
+  //       console.log(result[0]);
+  //       console.log(result[1]);
+  //     })
+  // } catch(err){
+  //   console.log(`Error: ${err}`);
+  // }
+  
+
+
+  
