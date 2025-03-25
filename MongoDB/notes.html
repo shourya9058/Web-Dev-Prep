@@ -1,0 +1,265 @@
+<!-- MongoDB Basics -->
+
+<!-- mongosh -> To start MongoDB -->
+ <!-- use college -> To use a database called 'college' -->
+
+<!-- 
+C - To create/insert
+R - To read/find
+U - To update
+D - To delete -->
+
+<!-- mongoDb is a sort of javascript command understanding thing (isme javascript ki commands chl jaegi) -->
+
+<!-- MongoDb stores data in BSON (Binary JSON) format instead of JSON as JSON was memory inefficient +  it was text based due to which it's parsing was also difficult -->
+ <!-- BSON mein kya h ki data Binary mein convert hokr firr store hota h isse JSOn wale issues resolve ho jaate h plus yeh hume JSOn se jyada datatypes bhi provide krta h (For more go to the JSON Vs BSON page) -->
+
+ <!-- In MongoD, the data is stored in the form of documents and a collection of documents is known as "collection"
+  Ab jaise  SQL mein ejk database bna kr usme bhut saari tables bna skte the where each tables can have muktiple rows,
+  In the same manner in MongoDB, we create a database and each database consists of various collections where each collection consists of various documents which consists of data in the form of key value pairs aur jb yeh memory mein store hote h tb yeh BSON mein convert ho jaate h
+ -->
+
+ <!-- test> use college - to create database named "college"
+switched to db college
+college> show collections - no collections yet
+
+1) Create:
+
+college> db.student.insertOne({name:"Shourya", roll_no: "35"}) - insert krenge collection automatically bnn jaegi, yha "student" is the collection name and insertOne means ek data insert krenge filhal
+{
+  acknowledged: true,
+  insertedId: ObjectId('67e2e9fdac92f79b61b71236') - this is the collection Id aur yeh hrr collection ki primary key hoti h aur automatically generated hoti h
+}
+college>
+
+college> db.student.find() - kisi bhi collection ka saara data dekhne k liye
+[
+  {
+    _id: ObjectId('67e2e9fdac92f79b61b71236'),  (jaisa ki dikh rha h documents array ki forms mein store hote h)
+    name: 'Shourya',
+    roll_no: '35'
+  }
+]
+college>
+
+Agr koi collection exist nhi krti toh jb pehli baar data insert krenge tb collection automatically create ho jaegi -->
+
+
+<!-- To Insert Many data in one go we pass an array of objects inside the insertMany() function:
+
+college> db.student.insertMany([{name:"ronaldo", roll_no:07, country: "Portugal"},{name:"messi",roll_no:10, country: "Argentina"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67e2ecdbac92f79b61b71238'),
+    '1': ObjectId('67e2ecdbac92f79b61b71239')
+  }
+}
+college> -->
+
+<!-- 2) Insert:
+db.collection.find({key:value}): saare matching result return krega
+
+college> db.student.find({country:"Portugal"})
+[
+  {
+    _id: ObjectId('67e2ecdbac92f79b61b71238'),
+    name: 'ronaldo',
+    roll_no: 7,
+    country: 'Portugal'
+  },
+  {
+    _id: ObjectId('67e2eeb8ac92f79b61b7123a'),
+    name: 'pepe',
+    roll_no: 11,
+    country: 'Portugal'
+  }
+]
+college>
+
+db.collection.findOne({key:value}) : sirf pehli matched value return krega
+
+college> db.student.findOne({country:"Portugal"})
+{
+  _id: ObjectId('67e2ecdbac92f79b61b71238'),
+  name: 'ronaldo',
+  roll_no: 7,
+  country: 'Portugal'
+}
+college>
+
+
+
+** Find() returns a cursor i.e, reference to the orignal document where FindOne() returns the orignal document
+hum multiple conditions bhi pass kr skte h jaise college> db.student.findOne({country:"Portugal", name:"ronaldo"})
+-->
+
+<!-- MongoDB Operators: - Short Notes 🚀
+
+1️⃣ Comparison Operators:
+
+$eq:	Equal to (==)
+$ne:	Not equal (!=)
+$gt:	Greater than (>)
+ex: db.student.find({marks: {$gt: 75}})
+$gte:	Greater than or equal (>=)
+$lt:	Less than (<)
+$lte:	Less than or equal (<=)
+$in:	Matches values in an array
+ex: db.student.find({country: {$in: ["Portugal","Argentina"]}})
+$nin:	Does not match values in an array
+
+2️⃣ Logical Operators:
+
+$and:	Matches all conditions
+$or:	Matches any condition
+ex: db.student.find({$or: [{marks: {$gt:75}}, {country: "Portugal"}]})
+$nor:	Does NOT match any condition
+$not:	Inverts condition
+
+3️⃣ Element Operators:
+
+$exists:	Checks if field exists
+$type:	Matches data type
+4️⃣ Array Operators:
+$size:	Matches array length
+$all:	Matches all values in an array
+$elemMatch:	Matches at least one element
+
+5️⃣ Update Operators:
+
+$set:	Updates a field
+$unset:	Removes a field
+$inc:	Increments a value
+$mul:	Multiplies a value
+$rename:	Renames a field
+$push:	Adds an item to an array
+$pop:	Removes first/last array element
+$pull:	Removes matching element from an array
+
+6️⃣ Aggregation Operators:
+
+$sum:	Calculates sum
+$avg:	Calculates average
+$min:	Returns minimum value
+$max:	Returns maximum value
+$count:	Counts documents
+
+7️⃣ Text Search Operators:
+
+$text:	Performs text search
+$search:	Matches text
+ -->
+
+ <!-- 3) Update:
+ 
+ syntax: db.collection.updateOne(filter,update,option)
+ ex: db.student.updateOne()
+
+
+
+ 
+🔥 MongoDB Update Methods - Short Notes 🚀
+
+1️⃣ updateOne(filter, update, options)
+
+Ek hi document ko update karta hai jo filter condition match karega.
+
+Example:
+
+db.users.updateOne({ name: "Shaurya" }, { $set: { age: 22 } });
+Yeh "Shaurya" naam wale user ka age update karega.
+
+2️⃣ updateMany(filter, update, options)
+
+Saare matching documents ko update karega.
+
+Example:
+
+db.users.updateMany({ role: "developer" }, { $inc: { experience: 1 } });
+Yeh saare "developer" users ka experience 1 se badha dega.
+
+3️⃣ replaceOne(filter, replacement, options)
+
+Pura document replace karta hai except _id.
+
+Example:
+
+db.users.replaceOne({ name: "Shaurya" }, { name: "Shaurya Singh", age: 22 });
+Pehle se jo bhi fields thi wo hata ke sirf name aur age wala new data set hoga.
+
+4️⃣ findOneAndUpdate(filter, update, options)
+
+Ek document find karke update karta hai aur updated document return karta hai.
+
+Example:
+
+db.users.findOneAndUpdate(
+  { name: "Shaurya" },
+  { $set: { city: "Delhi" } },
+  { returnDocument: "after" }
+);
+"Shaurya" ka city update hoke "Delhi" ho jayega aur updated document return hoga.
+
+5️⃣ findOneAndReplace(filter, replacement, options)
+
+Ek document find karke pura replace kar deta hai aur replace hua document return karta hai.
+
+Example:
+
+db.users.findOneAndReplace(
+  { name: "Shaurya" },
+  { name: "Shaurya Singh", age: 23, city: "Delhi" },
+  { returnDocument: "after" }
+);
+Yeh "Shaurya" wale user ka pura document replace karega aur updated version return karega.
+
+6️⃣ findOneAndDelete(filter, options)
+
+Ek document find karke delete karta hai aur deleted document return karta hai.
+
+Example:
+
+db.users.findOneAndDelete({ name: "Shaurya" });
+"Shaurya" naam ka user delete ho jayega aur deleted document return karega.
+
+⚡ Bonus Tips
+$set → kisi field ko update karne ke liye use hota hai.
+
+$inc → kisi numeric value ko increase/decrease karne ke liye.
+
+$rename → kisi field ka naam badalne ke liye.
+
+$unset → kisi field ko delete karne ke liye.
+ -->
+
+ <!-- Nesting: Object k andar object hona aur usse accesss krna
+  
+ ex: 
+ college> db.student.insertOne({name:"farah",performance:{ marks:88,grade:'A'}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67e2fc95ac92f79b61b7123b')
+}
+ 
+solution query:
+
+college> db.student.findOne({"performance.marks":88})  -> performance.marks ko double quotes mein pass krna h
+{
+  _id: ObjectId('67e2fc95ac92f79b61b7123b'),
+  name: 'farah',
+  performance: { marks: 88, grade: 'A' }
+}
+college>
+ 
+ -->
+
+ <!-- 4) Delete:
+  
+ college> db.student.deleteOne({country:"Brazil"})
+{ acknowledged: true, deletedCount: 1 }
+college>
+same way mein delete many bhi kr skte h
+
+db.dropDatabase() - To delete the database
+ -->
