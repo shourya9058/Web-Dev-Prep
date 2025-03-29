@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Whatsapp</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>All chats</h1>
+    <% for(let chat of chats){ %>
+    <div class="chat">
+      <p>From: <i><%= chat.from%></i></p>
+      <div class="msg">
+        <p>Message: <%= chat.msg%></p>
+        <form method="get" action="/chats/<%=chat._id %>/edit">
+            <button>Edit</button>
+        </form>
+        <form method="post" action="/chats/<%=chat._id %>?_method=DELETE">
+            <button>delete</button>
+        </form>
+      </div>
+      <p>To: <i><%= chat.to%></i></p>
+      <hr>
+      <p><%= chat.created_at.toString().split(" ")[4]%></p>
+      <!-- pehle puri date ko string mein convert kiya aur space se split kiya toh ek array mil gyi saare words ki,ab unn words ya array k 4th index p humara time tha toh end mein [4] lga diya -->
+      <p><%= chat.created_at.toString().split(" ").slice(0,4).join(" ")%></p>
+      <!-- date k case mein hume 0 se 4th index tk words chahiye toh unhe split krke slice kiya aur firr usse array k words ko join krdiya with space isiliye " " lgae h -->
+    </div>
+    <% } %>
+    <form method="get" action="/chats/new">
+        <button class="btn">Create new chat</button>
+    </form>
+  </body>
+</html>
