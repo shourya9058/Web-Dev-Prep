@@ -1,0 +1,30 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+  <div class="col-8 offset-3">
+    <h3>Listings Details</h3>
+  </div>
+  <div class="card col-6 offset-3 show-card">
+    <img
+      src="<%=listing.image %>>"
+      class="card-img-top show-img"
+      alt="listing image"
+    />
+    <div class="card-body">
+      <p class="card-text"><%= listing.title %></p>
+      <b><%= listing.title %></b> <br />
+      <%= listing.description %> <br />
+      &#x20B9;<%= listing.price.toLocaleString("en-IN") %>
+      <br /><!-- iss price mein indian standard style ki trh show krne k liye ek function use krenge "tolocaleString" name ka yeh kisi bhi value ko string mein convert krta h with commas -->
+      <%= listing.country %> <br />
+      <%= listing.location %>
+    </div>
+  </div>
+  <br />
+  <div class="btns">
+    <a class="btn btn-dark col-1 offset-3 edit-btn mb-3" href="/listings/<%= listing._id %>/edit">Edit</a>
+    <form method="post" action="/listings/<%= listing._id%>?_method=DELETE">
+      <button class="btn btn-dark offset-5 mb-3">Delete</button>
+    </form>
+  </div>
+</div>
