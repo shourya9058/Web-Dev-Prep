@@ -1,0 +1,230 @@
+<style>
+  /* Enhanced Alert Styling with proper alignment */
+  .alert-enhanced {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    position: relative;
+    padding: 1rem 1rem 1rem 1.25rem;
+    border: none;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: alertAppear 0.3s ease forwards;
+  }
+
+  @keyframes alertAppear {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Success Alert */
+  .alert-enhanced.alert-success {
+    background-color: rgba(0, 166, 153, 0.1);
+    border-left: 4px solid #00a699;
+    color: #2e494a;
+  }
+
+  /* Error Alert */
+  .alert-enhanced.alert-danger {
+    background-color: rgba(255, 56, 92, 0.1);
+    border-left: 4px solid #ff385c;
+    color: #561622;
+  }
+
+  /* Alert Container - keeps content and close button aligned */
+  .alert-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Icon Styling */
+  .alert-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    flex-shrink: 0;
+  }
+
+  .alert-enhanced.alert-success .alert-icon {
+    color: #00a699;
+  }
+
+  .alert-enhanced.alert-danger .alert-icon {
+    color: #ff385c;
+  }
+
+  /* Alert Content */
+  .alert-content {
+    flex: 1;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.4;
+    padding-right: 20px; /* Space for close button */
+  }
+
+  /* Close Button */
+  .alert-enhanced .close-btn {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    font-size: 1.25rem;
+    line-height: 1;
+    opacity: 0.7;
+    cursor: pointer;
+    color: inherit;
+  }
+
+  .alert-enhanced .close-btn:hover {
+    opacity: 1;
+  }
+
+  /* Animation for dismissing */
+  .alert-dismiss {
+    animation: alertDismiss 0.3s ease forwards;
+  }
+
+  @keyframes alertDismiss {
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+      margin-top: -20px;
+    }
+  }
+
+  /* Animation for error shake */
+  .alert-shake {
+    animation: shake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translateX(-5px);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translateX(5px);
+    }
+  }
+</style>
+
+<% if(success && success.length) { %>
+<!-- Success message -->
+<div
+  class="alert alert-enhanced alert-success col-6 offset-3"
+  role="alert"
+  id="success-alert"
+>
+  <div class="alert-container">
+    <div class="alert-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+    </div>
+    <div class="alert-content"><%= success %></div>
+  </div>
+  <button
+    type="button"
+    class="close-btn"
+    onclick="dismissAlert('success-alert')"
+    aria-label="Close"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% } %> <% if(error && error.length) { %>
+<!-- Error message -->
+<div
+  class="alert alert-enhanced alert-danger col-6 offset-3"
+  role="alert"
+  id="error-alert"
+>
+  <div class="alert-container">
+    <div class="alert-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+    </div>
+    <div class="alert-content"><%= error %></div>
+  </div>
+  <button
+    type="button"
+    class="close-btn"
+    onclick="dismissAlert('error-alert')"
+    aria-label="Close"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% } %>
+
+<script>
+  // Function to dismiss alert with animation
+  function dismissAlert(id) {
+    const alert = document.getElementById(id);
+    alert.classList.add("alert-dismiss");
+    setTimeout(() => {
+      alert.style.display = "none";
+    }, 300);
+  }
+
+  // Add shake animation to error alert after page loads
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const errorAlert = document.getElementById("error-alert");
+      if (errorAlert) {
+        errorAlert.classList.add("alert-shake");
+      }
+    }, 5000);
+  });
+
+  // Auto-dismiss success messages after 5 seconds
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const successAlert = document.getElementById("success-alert");
+      if (successAlert) {
+        dismissAlert("success-alert");
+      }
+    }, 5000);
+  });
+</script>

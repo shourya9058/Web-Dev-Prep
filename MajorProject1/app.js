@@ -1,13 +1,23 @@
+if(process.env.NODE_ENV != "production"){ //production env mein yeh wala data koi access na kr paaye isiliye (aage ka kaam h)
+    require('dotenv').config();
+}
+// console.log(process.env.SECRET); .env ka data access krne ka tareeka
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const Listing = require("./models/listing.js");
 const path = require("path"); //views se ejs pages render krwane k liye
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate"); //basically bhut saare templates/layouts create krne mein help krte h jo hrr page mein same rehte h like navBar ya footer
-const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const {ListingSchema} = require("./schema.js");
+const listingRouter = require("./routes/listings.js");
+const reviewRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
+const session = require("express-session");
+const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
+
 
 
 port = 8080;
@@ -24,26 +34,82 @@ async function main() {
   await mongoose.connect(mongo_url);
 }
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
+
+const sessionOptions = {
+    secret: "mysupersecretcode",
+    resave: false,
+    saveUninitialized: true,
+    cookie:{
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000, //Date.now() miliseconds mein time deta h isiliye humne next seven days ko miliseconds mein convert krke add kra so that cookie agle 7 din tk saved rahe
+        maxAge : 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true, //security k liye use krte h basically
+    }
+};
+
+
 app.get("/",(req,res)=>{
     res.send("App is live!");
 });
 
-const validateListing = (req,res,next) =>{ //Joi wali functionality ko middle ware bnane k liye ek function kein daal diya
-    let {error} = ListingSchema.validate(req.body); //JOI will now validate the request body by itself   
-     if(error){
-        let errMsg = error.details.map((el)=> el.message).join(","); //error ki individual details ko map krenge with it's message and will separate them with ",";
-        throw new ExpressError(400, errMsg);
-     }else{
-        next();
-     }
-}
+
+
+app.use(session(sessionOptions));
+app.use(flash()); //hamesha routes se pehle likhna h yeh (except root).
+
+// session k baad hi passport ko use krna h.
+app.use(passport.initialize());
+app.use(passport.session()); //A web application needs the ability to identify users as they browse from page to page. This series of requests and responses, each associated with the same user, is known as a session.
+//This middleware enables us to keep the user logged in for a single session instead of requiring the user to login again and again.
+
+passport.use(new LocalStrategy(User.authenticate())); //user ko authenticate krwaega through LocalStrategy using the authenticate function.
+
+passport.serializeUser(User.serializeUser()); //user se related info store krana in a session
+passport.deserializeUser(User.deserializeUser());//user se related info remove krana in a session (session khtm hone p)
+
+// middle to pass listing to all routes so that navbar can access it and add user image
+app.use(async (req, res, next) => {
+    if (req.user) {
+      // If user is logged in (through passport)
+      res.locals.currentUser = req.user;
+      // You don't need to use listing.owner, just use currentUser directly
+    } else {
+      res.locals.currentUser = null;
+    }
+    next();
+  });
+
+
+app.use((req,res,next)=>{
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    // console.log(success);
+    res.locals.currUser = req.user; //to be used in nav.ejs
+    next();
+});
+
+
+//Demo user for testing passport
+
+// app.get("/demoUser",async(req,res)=>{
+//     let fakeUser = new User({
+//         email: "shourya@gmail.com",
+//         username: "singh07",
+//     });
+
+//    let registeredUser =  await User.register(fakeUser, "helloWorld"); //user ko register(with the password i.e., helloWorld) bhi krwaega plus ye bhi check krega ki kya wo user unique h ya nhi
+//    res.send(registeredUser);
+// })
+
+
+
+
+
+
 
 // Model: Listing -> Places (apartment, villas, flat, house, etc)
 // --> title - String
@@ -67,79 +133,9 @@ const validateListing = (req,res,next) =>{ //Joi wali functionality ko middle wa
 //     res.send("successful testing");
 // });
 
-//Index route
-
-app.get("/listings",validateListing,wrapAsync(async (req,res)=>{ //passing validateListing as a middleware so that pehle yeh call ho
-    const allListings = await Listing.find({});
-    res.render("./listings/index.ejs",{allListings});
-    })
-);
-
-    
-//new route
-
-app.get("/listings/new",(req,res)=>{
-    res.render("./listings/new.ejs");
-})
-
-//Show route
-
-app.get("/listings/:id",wrapAsync(async (req,res)=>{
-    let {id} = req.params;
-    const listing = await Listing.findById(id);
-    res.render("listings/show.ejs", {listing});
-})
-);
-
-//create route
-// app.post("/listings",async (req,res,next)=>{
-    // try{
-    //     // let {title, description, image, price, location, country} = req.body;
-    // // let listing = req.body.listing;
-    // const newListing = new Listing(req.body.listing);
-    // await newListing.save();
-    // res.redirect("/listings");
-    // } catch(err){
-    //     next(err);
-    // }
-    
-    app.post("/listings",wrapAsync(async (req,res,next)=>{
-     
-    const newListing = new Listing(req.body.listing);
-    await newListing.save();
-    res.redirect("/listings");  //wrapAsync function basically try catch block ka kaam krta h bss yeh usse jyada efficeint hota h
-    })
-);
-
-//edit route
-
-app.get("/listings/:id/edit",wrapAsync(async (req,res)=>{
-    let {id} = req.params;
-    const listing = await Listing.findById(id);
-    res.render("listings/edit.ejs", {listing});
-})
-);
-
-//update route
-
-app.put("/listings/:id",validateListing,wrapAsync(async (req,res)=>{
-    let {id} = req.params;
-    await Listing.findByIdAndUpdate(id,{...req.body.listing}); //deconstruction the paramaters present in the req.body.listing object
-    res.redirect(`/listings/${id}`);
-})
-);
-
-
-
-//Delete route
-
-app.delete("/listings/:id",wrapAsync(async (req,res)=>{
-    let {id} = req.params;
-    const deletedListing = await Listing.findByIdAndDelete(id);
-    console.log(deletedListing);
-    res.redirect("/listings");
-})
-);
+app.use("/listings",listingRouter);
+app.use("/listings/:id/reviews",reviewRouter);
+app.use("/",userRouter);
 
 
 app.all("*",(req,res,next)=>{ //agr upr kisi bhi listing se match nhi hua toh yha hoga (jo create hi nhi kiye unhe access krte time yeh kaam krega)
@@ -161,3 +157,5 @@ app.use((err,req,res,next)=>{
 app.listen(port, ()=>{
     console.log(`Listening at port:  ${port}`);
 });
+
+//Express router basically whi h jo humne rotes folder bnake sb rotes ko unki functionality k basis p alg alg krke firr export krake use kiya,basically fucntionality yeh kuch add nhi krte but yeh code ko readable jarur bna dete h

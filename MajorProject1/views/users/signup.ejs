@@ -1,0 +1,136 @@
+<% layout("/layouts/boilerplate") %>
+<div class="auth-container">
+  <div class="auth-form-container">
+    <div class="auth-header">
+      <h2>Sign up for Wanderlust</h2>
+      <p>Create an account to start your journey with us</p>
+    </div>
+
+    <form
+      action="/signup"
+      method="post"
+      class="airbnb-form needs-validation"
+      enctype="multipart/form-data"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Choose a username"
+          class="form-control"
+          required
+        />
+        <div class="form-tip">This will be visible to other users</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter your email address"
+          class="form-control"
+          required
+        />
+        <div class="form-tip">
+          We'll email you trip confirmations and receipts
+        </div>
+      </div>
+
+      <!-- 🚀 Profile Image URL field added -->
+      <div class="form-group">
+        <label for="image">Profile Image URL</label>
+        <input type="file" name="image" id="image" class="form-control" />
+        <div class="form-tip">Leave blank to use a default image</div>
+      </div>
+      <!-- 🚀 Profile Image URL field ends -->
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="password-input-container">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Create a password"
+            class="form-control"
+            required
+          />
+          <button
+            type="button"
+            class="password-toggle"
+            aria-label="Show password"
+          >
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <div class="password-strength">
+          <div class="strength-meter">
+            <div class="strength-segment"></div>
+            <div class="strength-segment"></div>
+            <div class="strength-segment"></div>
+            <div class="strength-segment"></div>
+          </div>
+          <span class="strength-text">Password strength: very weak</span>
+        </div>
+        <div class="form-tip">
+          Use at least 8 characters with a mix of letters, numbers & symbols
+        </div>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label class="checkbox-container">
+          <input type="checkbox" name="marketing_consent" />
+          <span class="checkmark"></span>
+          <span class="checkbox-text"
+            >Email me about Wanderlust promotions, news, and travel
+            inspiration</span
+          >
+        </label>
+      </div>
+
+      <div class="terms-agreement">
+        <p>
+          By selecting <strong>Agree and sign up</strong>, I agree to
+          Wanderlust's <a href="/terms">Terms of Service</a>,
+          <a href="/payments">Payments Terms of Service</a>, and
+          <a href="/privacy">Privacy Policy</a>.
+        </p>
+      </div>
+
+      <button type="submit" class="airbnb-submit-btn">Agree and sign up</button>
+
+      <div class="auth-divider">
+        <span>or</span>
+      </div>
+
+      <div class="social-login-options">
+        <button type="button" class="social-login-btn google-btn">
+          <img
+            src="https://cdn.cdnlogo.com/logos/g/35/google-icon.svg"
+            alt="Google logo"
+            width="18"
+            height="18"
+          />
+          <span>Continue with Google</span>
+        </button>
+        <button type="button" class="social-login-btn facebook-btn">
+          <i class="fa-brands fa-facebook-f"></i>
+          <span>Continue with Facebook</span>
+        </button>
+        <button type="button" class="social-login-btn apple-btn">
+          <i class="fa-brands fa-apple"></i>
+          <span>Continue with Apple</span>
+        </button>
+      </div>
+
+      <div class="auth-footer">
+        <p>Already have an account? <a href="/login">Log in</a></p>
+      </div>
+    </form>
+  </div>
+</div>

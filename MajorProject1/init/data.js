@@ -3,243 +3,1095 @@ const sampleListings = [
     title: "Cozy Beachfront Cottage",
     description:
       "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and easy access to the beach.",
-    image: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    },
     price: 1500,
     location: "Malibu",
     country: "United States",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: true,
+    availableFrom: "2025-06-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: true,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 1000,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All utilities included in the price"
+    }
   },
   {
     title: "Modern Loft in Downtown",
-    description: "Stay in the heart of the city in this stylish loft apartment.",
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    description:
+      "Stay in the heart of the city in this stylish loft apartment. Perfect for urban explorers!",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    },
     price: 1200,
     location: "New York City",
     country: "United States",
+    roomType: "studio",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "professionals",
+    immediateAvailability: true,
+    availableFrom: "2025-05-25",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: false
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 1500,
+    minStayMonths: 3,
+    bills: {
+      included: false,
+      details: "Utilities not included. Average $150-200/month."
+    }
   },
   {
-    title: "Luxury Villa with Private Pool",
-    description: "Indulge in luxury in this stunning villa with a private pool.",
-    image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    price: 5000,
-    location: "Santorini",
-    country: "Greece",
-  },
-  {
-    title: "Rustic Cabin in the Woods",
-    description: "Experience nature in this cozy cabin surrounded by lush forests.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    price: 800,
+    title: "Mountain Retreat",
+    description:
+      "Unplug and unwind in this peaceful mountain cabin. Surrounded by nature, it's a perfect place to recharge.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1000,
     location: "Aspen",
     country: "United States",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: false,
+    availableFrom: "2025-07-15",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: false,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: true,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 800,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "Includes heating, electricity, and internet."
+    }
   },
   {
-    title: "Charming Parisian Apartment",
-    description: "Live like a local in this beautiful apartment in the heart of Paris.",
-    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    price: 2200,
-    location: "Paris",
-    country: "France",
-  },
-  {
-    title: "Seaside Bungalow",
-    description: "Relax in this peaceful bungalow just steps away from the ocean.",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    price: 1600,
-    location: "Phuket",
-    country: "Thailand",
-  },
-  {
-    title: "Minimalist Tokyo Apartment",
-    description: "Stay in a sleek and modern apartment in the heart of Tokyo.",
-    image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 1300,
-    location: "Tokyo",
-    country: "Japan",
-  },
-  {
-    title: "Mountain View Chalet",
-    description: "Breathtaking mountain views from this cozy alpine chalet.",
-    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 2400,
-    location: "Zermatt",
-    country: "Switzerland",
-  },
-  {
-    title: "Beach House with Infinity Pool",
-    description: "Luxury beach house with stunning ocean views and an infinity pool.",
-    image: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    price: 5500,
-    location: "Bali",
-    country: "Indonesia",
-  },
-  {
-    title: "Elegant Victorian Home",
-    description: "A charming and historic home with modern comforts.",
-    image: "https://images.unsplash.com/photo-1533619239233-6280475a633a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    price: 1900,
-    location: "London",
-    country: "United Kingdom",
-  },
-  {
-    title: "Ski Lodge with Fireplace",
-    description: "Perfect winter escape with a cozy fireplace and ski-in/ski-out access.",
-    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 3100,
-    location: "Whistler",
-    country: "Canada",
-  },
-  {
-    title: "Sunny Countryside Retreat",
-    description: "Enjoy peace and serenity in this countryside retreat.",
-    image: "https://images.unsplash.com/photo-1516402707257-787c50fc3898?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 1400,
-    location: "Tuscany",
+    title: "Historic Villa in Tuscany",
+    description:
+      "Experience the charm of Tuscany in this beautifully restored villa. Explore the rolling hills and vineyards.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2500,
+    location: "Florence",
     country: "Italy",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "family",
+    immediateAvailability: false,
+    availableFrom: "2025-06-10",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: true,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 2000,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All utilities included. Weekly cleaning service provided."
+    }
   },
   {
-    title: "Modern Condo with Skyline View",
-    description: "A stylish and modern condo with breathtaking skyline views.",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 2600,
-    location: "Dubai",
-    country: "UAE",
+    title: "Secluded Treehouse Getaway",
+    description:
+      "Live among the treetops in this unique treehouse retreat. A true nature lover's paradise.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 800,
+    location: "Portland",
+    country: "United States",
+    roomType: "single",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: true,
+    availableFrom: "2025-05-20",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: false,
+      wifi: true,
+      ac: false,
+      laundry: false,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: false,
+      curfew: false
+    },
+    securityDeposit: 500,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "Eco-friendly solar power and rainwater collection system."
+    }
   },
   {
-    title: "Traditional Riad in Marrakech",
-    description: "Immerse yourself in Moroccan culture in this stunning riad.",
-    image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 1700,
-    location: "Marrakech",
-    country: "Morocco",
+    title: "Beachfront Paradise",
+    description:
+      "Step out of your door onto the sandy beach. This beachfront condo offers the ultimate relaxation.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2000,
+    location: "Cancun",
+    country: "Mexico",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: false,
+    availableFrom: "2025-08-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 1500,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All utilities included. Weekly housekeeping service provided."
+    }
   },
   {
-    title: "Historic Stone Cottage",
-    description: "A charming stone cottage with antique decor and cozy vibes.",
-    image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    title: "Rustic Cabin by the Lake",
+    description:
+      "Spend your days fishing and kayaking on the serene lake. This cozy cabin is perfect for outdoor enthusiasts.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
     price: 900,
-    location: "Edinburgh",
-    country: "Scotland",
+    location: "Lake Tahoe",
+    country: "United States",
+    roomType: "single",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: true,
+    availableFrom: "2025-05-20",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: false,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: true,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 700,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "Includes electricity, water, and internet. Free use of kayaks and fishing equipment."
+    }
   },
   {
-    title: "Penthouse with Rooftop Pool",
-    description: "Experience luxury living in this penthouse with a private rooftop pool.",
-    image: "https://images.unsplash.com/photo-1567449303078-57ad995bd17a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 6000,
+    title: "Luxury Penthouse with City Views",
+    description:
+      "Indulge in luxury living with panoramic city views from this stunning penthouse apartment.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2t5JTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 3500,
     location: "Los Angeles",
     country: "United States",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "professionals",
+    immediateAvailability: false,
+    availableFrom: "2025-07-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 5000,
+    minStayMonths: 3,
+    bills: {
+      included: false,
+      details: "Utilities not included. Building amenities include gym, pool, and 24-hour doorman."
+    }
   },
   {
-    title: "Treehouse in the Jungle",
-    description: "Stay close to nature in this beautiful treehouse retreat.",
-    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 1200,
-    location: "Costa Rica",
-    country: "Costa Rica",
+    title: "Ski-In/Ski-Out Chalet",
+    description:
+      "Hit the slopes right from your doorstep in this ski-in/ski-out chalet in the Swiss Alps.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 3000,
+    location: "Verbier",
+    country: "Switzerland",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: false,
+    availableFrom: "2025-11-15",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: false,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 3000,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All utilities included. Includes daily housekeeping and ski storage."
+    }
   },
   {
-    title: "Luxury Overwater Bungalow",
-    description: "Unwind in a stunning overwater bungalow with crystal-clear waters.",
-    image: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGFrZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    price: 7500,
-    location: "Maldives",
-    country: "Maldives",
-  },
-  {
-    title: "Cozy Igloo with Northern Lights View",
-    description: "Enjoy a magical night under the aurora borealis in a cozy igloo.",
-    image: "https://images.unsplash.com/photo-1548777123-e216912df7d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 1800,
-    location: "Lapland",
-    country: "Finland",
-  },
-  {
-    title: "Mediterranean Villa with Ocean View",
-    description: "A stunning villa offering breathtaking ocean views and Mediterranean charm.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 4800,
-    location: "Santorini",
-    country: "Greece",
-  },
-  {
-    title: "Safari Lodge with Wildlife Experience",
-    description: "Get up close to wildlife in this luxury safari lodge.",
-    image: "https://images.unsplash.com/photo-1553425300-8bd56360f8eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 3500,
-    location: "Serengeti",
+    title: "Safari Lodge in the Serengeti",
+    description:
+      "Experience the thrill of the wild in a comfortable safari lodge. Witness the Great Migration up close.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 4000,
+    location: "Serengeti National Park",
     country: "Tanzania",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: true,
+    availableFrom: "2025-05-20",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: false,
+      curfew: true,
+      curfewDetails: "No outdoor activities after sunset for safety reasons"
+    },
+    securityDeposit: 2000,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All-inclusive package with meals, guided safari tours, and airport transfers."
+    }
   },
   {
-    title: "Cliffside Retreat with Panoramic Views",
-    description: "A peaceful retreat perched on a cliff with stunning views.",
-    image: "https://images.unsplash.com/photo-1520262494112-9fe481d36ec3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 3100,
-    location: "Big Sur",
-    country: "United States",
+    title: "Historic Canal House",
+    description:
+      "Stay in a piece of history in this beautifully preserved canal house in Amsterdam's iconic district.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1800,
+    location: "Amsterdam",
+    country: "Netherlands",
+    roomType: "shared",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: false,
+    availableFrom: "2025-09-01",
+    amenities: {
+      attachedBathroom: false,
+      kitchenAccess: true,
+      wifi: true,
+      ac: false,
+      laundry: true,
+      parking: false
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 1500,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All utilities included. Bicycles available for guests."
+    }
   },
   {
-    title: "Chic Studio in the Heart of Rome",
-    description: "A cozy studio apartment located in the heart of Rome.",
-    image: "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 1300,
-    location: "Rome",
-    country: "Italy",
-  },
-  {
-    title: "Private Island Villa",
-    description: "Have an entire island to yourself in this luxurious private villa.",
-    image: "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    title: "Private Island Retreat",
+    description:
+      "Have an entire island to yourself for a truly exclusive and unforgettable vacation experience.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1618140052121-39fc6db33972?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bG9kZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    },
     price: 10000,
     location: "Fiji",
     country: "Fiji",
+    roomType: "ensuite",
+    furnished: "unfurnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: false,
+    availableFrom: "2025-06-15",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: true,
+      pets: false,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 5000,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All-inclusive with private chef, boat transfers, and water activities."
+    }
   },
   {
-    title: "Bohemian Bungalow with Lush Garden",
-    description: "A stylish bungalow with a bohemian vibe and lush greenery.",
-    image: "https://images.unsplash.com/photo-1488462237308-ecaa28b729d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 1400,
+    title: "Charming Cottage in the Cotswolds",
+    description:
+      "Escape to the picturesque Cotswolds in this quaint and charming cottage with a thatched roof.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1602088113235-229c19758e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmVhY2glMjB2YWNhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1200,
+    location: "Cotswolds",
+    country: "United Kingdom",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: true,
+    availableFrom: "2025-05-20",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: false,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: true,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 1000,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All utilities included. Gardener visits weekly."
+    }
+  },
+  {
+    title: "Historic Brownstone in Boston",
+    description:
+      "Step back in time in this elegant historic brownstone located in the heart of Boston.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1533619239233-6280475a633a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2200,
+    location: "Boston",
+    country: "United States",
+    roomType: "shared",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "students",
+    immediateAvailability: false,
+    availableFrom: "2025-09-01",
+    amenities: {
+      attachedBathroom: false,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: false
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 2000,
+    minStayMonths: 4,
+    bills: {
+      included: false,
+      details: "Utilities split among roommates, typically $75-100 per person monthly."
+    }
+  },
+  {
+    title: "Beachfront Bungalow in Bali",
+    description:
+      "Relax on the sandy shores of Bali in this beautiful beachfront bungalow with a private pool.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1602391833977-358a52198938?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1800,
     location: "Bali",
     country: "Indonesia",
+    roomType: "ensuite",
+    furnished: "unfurnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: true,
+    availableFrom: "2025-05-20",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: true,
+      pets: false,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 1000,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All utilities included. Daily housekeeping and breakfast provided."
+    }
   },
   {
-    title: "Sky High Apartment with 360° View",
-    description: "Enjoy breathtaking views from the 50th floor of this modern apartment.",
-    image: "https://images.unsplash.com/photo-1503174971373-b1f69850bded?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 2800,
-    location: "Hong Kong",
-    country: "China",
-  },
-  {
-    title: "Historic Castle Stay",
-    description: "Live like royalty in a centuries-old castle with grand interiors.",
-    image: "https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 5800,
-    location: "Loire Valley",
-    country: "France",
-  },
-  {
-    title: "A-Frame Cabin in the Woods",
-    description: "A charming A-frame cabin nestled in a tranquil forest.",
-    image: "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 1100,
-    location: "Vancouver",
+    title: "Mountain View Cabin in Banff",
+    description:
+      "Enjoy breathtaking mountain views from this cozy cabin in the Canadian Rockies.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1521401830884-6c03c1c87ebb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1500,
+    location: "Banff",
     country: "Canada",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: false,
+    availableFrom: "2025-06-15",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: false,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 1000,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All utilities included. Wood for fireplace provided."
+    }
   },
   {
-    title: "Chateau with Vineyard Views",
-    description: "A grand chateau overlooking scenic vineyards in the countryside.",
-    image: "https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 4500,
-    location: "Bordeaux",
-    country: "France",
+    title: "Art Deco Apartment in Miami",
+    description:
+      "Step into the glamour of the 1920s in this stylish Art Deco apartment in South Beach.",
+    image: {
+      filename: "listingimage",
+      url: "https://plus.unsplash.com/premium_photo-1670963964797-942df1804579?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1600,
+    location: "Miami",
+    country: "United States",
+    roomType: "studio",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: true,
+    availableFrom: "2025-05-20",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: false
+    },
+    rules: {
+      smoking: false,
+      pets: true,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 1500,
+    minStayMonths: 2,
+    bills: {
+      included: false,
+      details: "Electricity and water not included. Internet included."
+    }
   },
   {
-    title: "Floating House on the Lake",
-    description: "A peaceful floating house on a serene lake surrounded by mountains.",
-    image: "https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: 3200,
-    location: "Hallstatt",
-    country: "Austria",
-  }
+    title: "Tropical Villa in Phuket",
+    description:
+      "Escape to a tropical paradise in this luxurious villa with a private infinity pool in Phuket.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1470165301023-58dab8118cc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 3000,
+    location: "Phuket",
+    country: "Thailand",
+    roomType: "ensuite",
+    furnished: "unfurnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: false,
+    availableFrom: "2025-07-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: true,
+      pets: false,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 2000,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All utilities included. Daily housekeeping service provided."
+    }
+  },
+  {
+    title: "Historic Castle in Scotland",
+    description:
+      "Live like royalty in this historic castle in the Scottish Highlands. Explore the rugged beauty of the area.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1585543805890-6051f7829f98?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGJlYWNoJTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 4000,
+    location: "Scottish Highlands",
+    country: "United Kingdom",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: false,
+    availableFrom: "2025-08-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: false,
+      laundry: true,
+      parking: true
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: false
+    },
+    securityDeposit: 3000,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All utilities included. Daily housekeeping and breakfast provided."
+    }
+  },
+  {
+    title: "Desert Oasis in Dubai",
+    description: "Experience luxury in the middle of the desert in this opulent oasis in Dubai with a private pool.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 5000,
+    location: "Dubai",
+    country: "United Arab Emirates",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: true,
+    availableFrom: "2025-05-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: true,
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: false,
+    },
+    securityDeposit: 3000,
+    minStayMonths: 2,
+    bills: {
+      included: true,
+      details: "Utilities and maintenance covered. Weekly pool cleaning included.",
+    },
+  },
+  {
+    title: "Rustic Log Cabin in Montana",
+    description: "Unplug and unwind in this cozy log cabin surrounded by the natural beauty of Montana.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1586375300773-8384e3e4916f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1100,
+    location: "Montana",
+    country: "United States",
+    roomType: "single",
+    furnished: "semifurnished",
+    genderPreference: "any",
+    preferredTenants: "students",
+    immediateAvailability: false,
+    availableFrom: "2025-08-15",
+    amenities: {
+      attachedBathroom: false,
+      kitchenAccess: true,
+      wifi: false,
+      ac: false,
+      laundry: true,
+      parking: true,
+    },
+    rules: {
+      smoking: true,
+      pets: true,
+      guests: false,
+      curfew: true,
+    },
+    securityDeposit: 800,
+    minStayMonths: 3,
+    bills: {
+      included: false,
+      details: "Electricity not included. Firewood and water included.",
+    },
+  },
+  {
+    title: "Beachfront Villa in Greece",
+    description: "Enjoy the crystal-clear waters of the Mediterranean in this beautiful beachfront villa on a Greek island.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2500,
+    location: "Mykonos",
+    country: "Greece",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "professionals",
+    immediateAvailability: false,
+    availableFrom: "2025-06-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: false,
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: false,
+    },
+    securityDeposit: 1500,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "Wi-Fi and electricity included. No housekeeping.",
+    },
+  },
+  {
+    title: "Eco-Friendly Treehouse Retreat",
+    description: "Stay in an eco-friendly treehouse nestled in the forest. It's the perfect escape for nature lovers.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1488462237308-ecaa28b729d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 750,
+    location: "Costa Rica",
+    country: "Costa Rica",
+    roomType: "shared",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "family",
+    immediateAvailability: true,
+    availableFrom: "2025-05-01",
+    amenities: {
+      attachedBathroom: false,
+      kitchenAccess: true,
+      wifi: true,
+      ac: false,
+      laundry: false,
+      parking: false,
+    },
+    rules: {
+      smoking: false,
+      pets: true,
+      guests: false,
+      curfew: true,
+    },
+    securityDeposit: 500,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "Basic utilities included. Eco-friendly stay guidelines must be followed.",
+    },
+  },
+  {
+    title: "Historic Cottage in Charleston",
+    description: "Experience the charm of historic Charleston in this beautifully restored cottage with a private garden.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1587381420270-3e1a5b9e6904?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1600,
+    location: "Charleston",
+    country: "United States",
+    roomType: "single",
+    furnished: "furnished",
+    genderPreference: "female",
+    preferredTenants: "any",
+    immediateAvailability: false,
+    availableFrom: "2025-09-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: true,
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: true,
+    },
+    securityDeposit: 1000,
+    minStayMonths: 2,
+    bills: {
+      included: true,
+      details: "All utilities included. Garden maintenance is handled weekly.",
+    },
+  },
+  {
+    title: "Modern Apartment in Tokyo",
+    description: "Explore the vibrant city of Tokyo from this modern and centrally located apartment.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1480796927426-f609979314bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2000,
+    location: "Tokyo",
+    country: "Japan",
+    roomType: "ensuite",
+    furnished: "semifurnished",
+    genderPreference: "any",
+    preferredTenants: "students",
+    immediateAvailability: true,
+    availableFrom: "2025-05-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: false,
+      parking: false,
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: false,
+      curfew: true,
+    },
+    securityDeposit: 1200,
+    minStayMonths: 3,
+    bills: {
+      included: false,
+      details: "Internet and gas bills to be paid separately.",
+    },
+  },
+  {
+    title: "Lakefront Cabin in New Hampshire",
+    description: "Spend your days by the lake in this cozy cabin in the scenic White Mountains of New Hampshire.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1200,
+    location: "New Hampshire",
+    country: "United States",
+    roomType: "single",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "couples",
+    immediateAvailability: false,
+    availableFrom: "2025-10-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: false,
+      ac: false,
+      laundry: true,
+      parking: true,
+    },
+    rules: {
+      smoking: true,
+      pets: false,
+      guests: true,
+      curfew: false,
+    },
+    securityDeposit: 900,
+    minStayMonths: 2,
+    bills: {
+      included: true,
+      details: "Water and electricity included. No Wi-Fi available.",
+    },
+  },
+  {
+    title: "Luxury Villa in the Maldives",
+    description: "Indulge in luxury in this overwater villa in the Maldives with stunning views of the Indian Ocean.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 6000,
+    location: "Maldives",
+    country: "Maldives",
+    roomType: "ensuite",
+    furnished: "furnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: true,
+    availableFrom: "2025-05-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: false,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: false,
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: false,
+      curfew: false,
+    },
+    securityDeposit: 4000,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "Full luxury service including meals, spa, and concierge.",
+    },
+  },
+  {
+    title: "Ski Chalet in Aspen",
+    description: "Hit the slopes in style with this luxurious ski chalet in the world-famous Aspen ski resort.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 4000,
+    location: "Aspen",
+    country: "United States",
+    roomType: "ensuite",
+    furnished: "unfurnished",
+    genderPreference: "any",
+    preferredTenants: "any",
+    immediateAvailability: false,
+    availableFrom: "2025-11-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: true,
+      laundry: true,
+      parking: true,
+    },
+    rules: {
+      smoking: false,
+      pets: false,
+      guests: true,
+      curfew: false,
+    },
+    securityDeposit: 2500,
+    minStayMonths: 1,
+    bills: {
+      included: true,
+      details: "All bills and firewood included. Snow clearing service available.",
+    },
+  },
+  {
+    title: "Secluded Beach House in Costa Rica",
+    description: "Escape to a secluded beach house on the Pacific coast of Costa Rica. Surf, relax, and unwind.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1800,
+    location: "Costa Rica",
+    country: "Costa Rica",
+    roomType: "ensuite",
+    furnished: "semifurnished",
+    genderPreference: "any",
+    preferredTenants: "family",
+    immediateAvailability: true,
+    availableFrom: "2025-05-01",
+    amenities: {
+      attachedBathroom: true,
+      kitchenAccess: true,
+      wifi: true,
+      ac: false,
+      laundry: false,
+      parking: true,
+    },
+    rules: {
+      smoking: true,
+      pets: true,
+      guests: true,
+      curfew: false,
+    },
+    securityDeposit: 1000,
+    minStayMonths: 1,
+    bills: {
+      included: false,
+      details: "Internet included. Electricity and water bills extra.",
+    },
+  },
 ];
 
-module.exports = { data: sampleListings };  //saare data ko object ki form mein export kr rhe h
+module.exports = { data: sampleListings };
